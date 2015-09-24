@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BlockButton.h"
 CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHeight);
 
 @interface UIButton(Factory)

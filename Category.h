@@ -24,9 +24,6 @@
 - (void) round;
 - (void) round:(CGFloat)radius;
 - (UIView *)frstResponder;
-- (void) addLine:(CGFloat) y;
-- (void) addPointLine:(CGRect) frame pointSize:(CGSize)size offset:(CGFloat)offset color:(UIColor *)color;
-- (void) addLineWithFrame:(CGRect)frame;
 -(CGFloat)width;
 -(CGFloat)height;
 @end

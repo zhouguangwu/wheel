@@ -102,38 +102,6 @@
     return nil;
 }
 
-- (void) addLine:(CGFloat) y{
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, y, kScreenWidth, 0.5)];
-    line.backgroundColor = [UIColor colorWith256R:0xcc G:0xcc B:0xcc];
-    [self addSubview:line];
-}
-
-- (void) addLineWithFrame:(CGRect)frame{
-    UIView *line = [[UIView alloc] initWithFrame:frame];
-    line.backgroundColor = [UIColor colorWith256R:0xe5 G:0xe5 B:0xe5];
-    [self addSubview:line];
-}
-
-- (void) addPointLine:(CGRect) frame pointSize:(CGSize)size offset:(CGFloat)offset color:(UIColor *)color{
-    if (frame.size.width > frame.size.height) {//水平的
-        CGPoint origin = frame.origin;
-        while (origin.x < CGRectGetMaxX(frame)) {
-            UIView *pointView = [[UIView alloc] initWithFrame:CGRectMake(origin.x, origin.y, size.width, size.height)];
-            pointView.backgroundColor = color;
-            [self addSubview:pointView];
-            origin.x += (size.width + offset);
-        }
-    }else{//垂直的
-        CGPoint origin = frame.origin;
-        while (origin.y < CGRectGetMaxY(frame)) {
-            UIView *pointView = [[UIView alloc] initWithFrame:CGRectMake(origin.x, origin.y, size.width, size.height)];
-            pointView.backgroundColor = color;
-            [self addSubview:pointView];
-            origin.y += (size.height + offset);
-        }
-    }
-}
-
 -(CGFloat)width{
     return self.frame.size.width;
 }
@@ -142,7 +110,6 @@
     return self.frame.size.height;
 }
 @end
-
 
 @implementation UIViewController(Helper)
 - (void) quickAlertWithTitle:(NSString *)title message:(NSString *)message{

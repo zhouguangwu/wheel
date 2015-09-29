@@ -23,6 +23,12 @@
 #define kWeakSelf(w)  __weak typeof(self) w = self
 #define kStrong(w,s) __strong typeof(w) s = w
 #define kIsShort kScreenHeight < 500
+#define IOS8_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"8.0"] != NSOrderedAscending )
+#define IOS7_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
+#define IOS6_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"6.0"] != NSOrderedAscending )
+#define IOS5_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"5.0"] != NSOrderedAscending )
+#define IOS4_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"4.0"] != NSOrderedAscending )
+#define IOS3_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"3.0"] != NSOrderedAscending )
 @interface Utils : NSObject
 + (void) runBackGroud:(void (^)(void))block;
 + (void) runBackGroudOnSerialQueue:(void (^)(void))block;

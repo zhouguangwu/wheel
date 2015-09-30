@@ -20,7 +20,7 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
 
 @implementation UIButton(Factory)
 + (instancetype) buttonWithFrame:(CGRect)frame title:(NSString *)title{
-    id button = [[self.class alloc] initWithFrame:frame];
+    UIButton * button = [[self.class alloc] initWithFrame:frame];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     return button;

@@ -109,4 +109,5 @@ typedef void (^ButtonClieckedBlock)(void);
 
 @interface NSObject(Helper)
 -(NSArray *)propertyNames;
+-(NSString *)className;
 @end

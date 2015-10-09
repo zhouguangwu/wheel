@@ -404,5 +404,7 @@
     }
     return propertys;
 }
-
+-(NSString *)className{
+    return NSStringFromClass(self.class);
+}
 @end

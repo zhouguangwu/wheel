@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <QuartzCore/QuartzCore.h>
 #define kDocumentsPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define kBarHeight 44
 #define Ios6 ([[UIDevice currentDevice].systemVersion floatValue] < 7)
@@ -29,6 +29,22 @@
 #define IOS5_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"5.0"] != NSOrderedAscending )
 #define IOS4_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"4.0"] != NSOrderedAscending )
 #define IOS3_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"3.0"] != NSOrderedAscending )
+#define SYNTHESIZE_SINGLETON_FOR_CLASS(classname) \
+\
+static classname *shared##classname = nil; \
+\
++ (classname *)shared##classname \
+{ \
+@synchronized(self) \
+{ \
+if (shared##classname == nil) \
+{ \
+shared##classname = [[self alloc] init]; \
+} \
+} \
+\
+return shared##classname; \
+} 
 @interface Utils : NSObject
 + (void) runBackGroud:(void (^)(void))block;
 + (void) runBackGroudOnSerialQueue:(void (^)(void))block;
@@ -46,3 +62,4 @@ NSString *itoS(int n);
 NSNumber *itoN(int n);
 UINavigationController * rootNav();
 void exceptionHandler(NSException *exception);
+CAShapeLayer* makePolygon(CGPoint *points,UInt8 count);

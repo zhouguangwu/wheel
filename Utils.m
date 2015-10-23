@@ -101,3 +101,18 @@ void exceptionHandler(NSException *exception){
     free(strs);
     [Utils write:finalStr key:exceptionKey];
 }
+
+CAShapeLayer* makePolygon(CGPoint *points,UInt8 count){
+    CAShapeLayer *chartLine = [CAShapeLayer layer];
+    UIBezierPath *progressline = [UIBezierPath bezierPath];
+    for (UInt8 i = 0; i < count; i++) {
+        if (i == 0) {
+            [progressline moveToPoint:points[i]];
+        }else{
+            [progressline addLineToPoint:points[i]];
+        }
+    }
+//    [progressline stroke];
+    chartLine.path = progressline.CGPath;
+    return chartLine;
+}

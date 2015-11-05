@@ -29,10 +29,9 @@
 #define IOS5_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"5.0"] != NSOrderedAscending )
 #define IOS4_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"4.0"] != NSOrderedAscending )
 #define IOS3_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"3.0"] != NSOrderedAscending )
+#define namedImage(a) [UIImage imageNamed:a]
 #define SYNTHESIZE_SINGLETON_FOR_CLASS(classname) \
-\
 static classname *shared##classname = nil; \
-\
 + (classname *)shared##classname \
 { \
 @synchronized(self) \
@@ -42,7 +41,6 @@ if (shared##classname == nil) \
 shared##classname = [[self alloc] init]; \
 } \
 } \
-\
 return shared##classname; \
 } 
 @interface Utils : NSObject

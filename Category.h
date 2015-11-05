@@ -19,6 +19,7 @@
 - (void) subHeight: (int) hei;
 - (void) border;
 - (void) border:(UIColor *)color;
+- (CAShapeLayer *) makeDashBorder:(UIColor *)color pattern:(NSArray<NSNumber *>*) patterns;
 - (void) removeAllSubViews;
 - (void) addWidth:(int) width;
 - (void) round;

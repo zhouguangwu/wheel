@@ -72,6 +72,15 @@
     self.layer.borderColor = [color CGColor];
 }
 
+- (CAShapeLayer *)makeDashBorder:(UIColor *)color pattern:(NSArray<NSNumber *> *)patterns{
+    CAShapeLayer *border = [CAShapeLayer layer];
+    border.strokeColor = color.CGColor;
+    border.lineDashPattern = patterns;
+    border.path =  [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+    border.fillColor = [UIColor clearColor].CGColor;
+    return border;
+}
+
 - (void) removeAllSubViews{
     NSArray *subViews = self.subviews;
     for (UIView *view in subViews) {

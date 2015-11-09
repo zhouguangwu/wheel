@@ -211,3 +211,16 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
     return [[self dataUsingEncoding:NSUTF8StringEncoding] jsonObj];
 }
 @end
+
+@implementation NSIndexPath (Factory)
+
++(NSArray *)indexPathsForRows:(NSRange)range inSection:(NSInteger)section{
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    for (NSUInteger i = 0 ; i < range.length; i++) {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:range.location + i inSection:section];
+        [indexPaths addObject:path];
+    }
+    return indexPaths;
+}
+
+@end

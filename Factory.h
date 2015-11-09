@@ -71,3 +71,7 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
 +(instancetype) stringWithJsonObj:(id)obj;
 -(id) jsonObj;
 @end
+
+@interface NSIndexPath (Factory)
++(NSArray *)indexPathsForRows:(NSRange)range inSection:(NSInteger)section;
+@end

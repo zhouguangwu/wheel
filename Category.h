@@ -112,3 +112,5 @@ typedef void (^ButtonClieckedBlock)(void);
 -(NSArray *)propertyNames;
 -(NSString *)className;
 @end
+CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* patterns);
+CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* patterns);

@@ -73,12 +73,7 @@
 }
 
 - (CAShapeLayer *)makeDashBorder:(UIColor *)color pattern:(NSArray<NSNumber *> *)patterns{
-    CAShapeLayer *border = [CAShapeLayer layer];
-    border.strokeColor = color.CGColor;
-    border.lineDashPattern = patterns;
-    border.path =  [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
-    border.fillColor = [UIColor clearColor].CGColor;
-    return border;
+    return makeDashBorder(self.bounds, color, patterns);
 }
 
 - (void) removeAllSubViews{
@@ -417,3 +412,26 @@
     return NSStringFromClass(self.class);
 }
 @end
+CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* patterns){
+    CAShapeLayer *border = [CAShapeLayer layer];
+    border.strokeColor = color.CGColor;
+    border.lineDashPattern = patterns;
+    border.path =  [UIBezierPath bezierPathWithRect:frame].CGPath;
+    border.fillColor = [UIColor clearColor].CGColor;
+    return border;
+}
+
+CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* patterns){
+    assert(patterns.count > 0);
+    CAShapeLayer *border = [CAShapeLayer layer];
+    border.strokeColor = [UIColor blackColor].CGColor;
+    border.lineDashPattern = patterns;
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:*points];
+    for (UInt8 i = 1; i < length; i++) {
+        [path addLineToPoint:points[i]];
+        [path moveToPoint:points[i]];
+    }
+    border.path = path.CGPath;
+    return border;
+}

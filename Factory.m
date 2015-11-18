@@ -20,7 +20,7 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
 
 @implementation UIButton(Factory)
 + (instancetype) buttonWithFrame:(CGRect)frame title:(NSString *)title{
-    UIButton * button = [[self.class alloc] initWithFrame:frame];
+    UIButton * button = CGRectIsEmpty(frame) ? [UIButton new] : [[self.class alloc] initWithFrame:frame];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     return button;
@@ -48,7 +48,7 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
 
 @implementation UILabel (Factory)
 + (instancetype) labelWithFrame:(CGRect)frame text:(NSString *)text color:(UIColor *)color fontSize:(CGFloat)size{
-    UILabel *label = [[UILabel alloc]  initWithFrame:frame];
+    UILabel *label = CGRectIsEmpty(frame) ? UILabel.new : [[UILabel alloc]  initWithFrame:frame];
     label.text  =text;
     label.textColor = color == nil ?  [UIColor blackColor] : color;
     label.backgroundColor = [UIColor clearColor];

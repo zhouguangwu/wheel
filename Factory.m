@@ -58,7 +58,7 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
 
 + (instancetype) labelWithFrame:(CGRect) frame texts:(NSArray *) texts attr:(NSDictionary *) attr attrs:(NSArray *)attrs{
     NSAssert(texts.count == attrs.count, @"字的个数和attrs的个数不一样");
-    UILabel *label = [[UILabel alloc]  initWithFrame:frame];
+    UILabel *label = CGRectIsEmpty(frame) ? UILabel.new : [[UILabel alloc]  initWithFrame:frame];
     label.attributedText = [NSAttributedString stringWithTexts:texts attr:attr attrs:attrs];
     return label;
 }

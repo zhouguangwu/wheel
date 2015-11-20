@@ -51,6 +51,7 @@ h.removeFromSuperViewOnHide = YES;
 #define showHub() [MBProgressHUD showHUDAddedTo:kWindow animated:YES]
 #define hideHub() [MBProgressHUD hideHUDForView:kWindow animated:YES]
 #define kToastTime 1
+BOOL validateEmpty(NSArray *fields,NSArray *infos);
 void toast(NSString *str);
 @interface Utils : NSObject
 + (void) runBackGroud:(void (^)(void))block;

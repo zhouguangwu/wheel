@@ -7,6 +7,16 @@
 //
 
 #import "Utils.h"
+BOOL validateEmpty(NSArray *fields,NSArray *infos){
+    assert(fields.count == infos.count && fields.count > 0);
+    for (UITextField *field in fields) {
+        if (field.text.length == 0) {
+            [rootNav() quickAlertWithTitle:infos[[fields indexOfObject:field]] message:@""];
+            return NO;
+        }
+    }
+    return YES;
+}
 @implementation Utils
 + (void) runBackGroud:(void (^)(void))block{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{

@@ -12,6 +12,18 @@
 #import <objc/runtime.h>
 
 @implementation UIView (Helper)
+- (void) toast:(NSString *)str{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    
+    // Configure for text only and offset down
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = str;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    
+    [hud hide:YES afterDelay:kToastTime];
+}
+
 - (UIImage *) renderImage{
     UIGraphicsBeginImageContext(self.frame.size);
     CGContextRef context = UIGraphicsGetCurrentContext();

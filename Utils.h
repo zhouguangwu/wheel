@@ -42,7 +42,16 @@ shared##classname = [[self alloc] init]; \
 } \
 } \
 return shared##classname; \
-} 
+}
+#define showhub(h,title) MBProgressHUD *h = [[MBProgressHUD alloc] initWithView:kWindow];\
+h.labelText = title; \
+[kWindow addSubview:h]; \
+[h show:YES];\
+h.removeFromSuperViewOnHide = YES;
+#define showHub() [MBProgressHUD showHUDAddedTo:kWindow animated:YES]
+#define hideHub() [MBProgressHUD hideHUDForView:kWindow animated:YES]
+#define kToastTime 1
+void toast(NSString *str);
 @interface Utils : NSObject
 + (void) runBackGroud:(void (^)(void))block;
 + (void) runBackGroudOnSerialQueue:(void (^)(void))block;

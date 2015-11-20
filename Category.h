@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (Helper)
+- (void) toast:(NSString *)str;
 - (UIImage *) renderImage;
 - (void) up:(int) offset;
 - (void) down:(int) offset;
@@ -112,3 +113,4 @@ typedef void (^ButtonClieckedBlock)(void);
 -(NSArray *)propertyNames;
 -(NSString *)className;
 @end
+

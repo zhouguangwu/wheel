@@ -139,3 +139,10 @@ CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* pat
     border.path = path.CGPath;
     return border;
 }
+
+void toast(NSString *str){
+    UIView *toastView = [[UIView alloc] initWithFrame:CGRectMake(0, (kScreenHeight-40)/2, kScreenWidth, 40)];
+    [kWindow addSubview:toastView];
+    [toastView toast:str];
+    [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:kToastTime+0.1];
+}

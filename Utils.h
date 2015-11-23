@@ -20,6 +20,7 @@
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define netOn [NetUtils currentNetWorkStatus] != NetworkStatusNotReachable
 #define kRootNav [Utils rootNav]
+#define kRootTab (UITabBarController *)kWindow.rootViewController
 #define kWeakSelf(w)  __weak typeof(self) w = self
 #define kStrong(w,s) __strong typeof(w) s = w
 #define kIsShort kScreenHeight < 500

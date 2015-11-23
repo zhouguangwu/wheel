@@ -156,3 +156,8 @@ void toast(NSString *str){
     [toastView toast:str];
     [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:kToastTime+0.1];
 }
+
+void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection direction){
+    CGPoint ps[3] = {origin,CGPointMake(w/2/sin(45)+origin.x, origin.y+w/2/sin(45)),CGPointMake(w+origin.x, origin.y)};
+    memcpy(points, ps, sizeof(CGPoint)*3);
+}

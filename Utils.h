@@ -52,7 +52,6 @@ h.removeFromSuperViewOnHide = YES;
 #define hideHub() [MBProgressHUD hideHUDForView:kWindow animated:YES]
 #define kToastTime 1
 BOOL validateEmpty(NSArray *fields,NSArray *infos);
-void toast(NSString *str);
 @interface Utils : NSObject
 + (void) runBackGroud:(void (^)(void))block;
 + (void) runBackGroudOnSerialQueue:(void (^)(void))block;
@@ -73,3 +72,11 @@ void exceptionHandler(NSException *exception);
 CAShapeLayer* makePolygon(CGPoint *points,UInt8 count);
 CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* patterns);
 CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* patterns);
+void toast(NSString *str);
+typedef enum{
+    MakePointsDirectionTop,
+    MakePointsDirectionLeft,
+    MakePointsDirectionBottom,
+    MakePointsDirectionRight
+} MakePointsDirection;
+void make3Points(CGPoint *points,CGPoint origin,CGFloat width,MakePointsDirection direction);

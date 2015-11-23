@@ -75,3 +75,6 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
 @interface NSIndexPath (Factory)
 +(NSArray *)indexPathsForRows:(NSRange)range inSection:(NSInteger)section;
 @end
+@interface UIImage (Factory)
++(instancetype)imageWithColor:(UIColor *)color;
+@end

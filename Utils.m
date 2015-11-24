@@ -81,10 +81,9 @@ BOOL validateEmpty(NSArray *fields,NSArray *infos){
     return (UINavigationController *)kWindow.rootViewController;
 }
 
-- (void)dealloc{
-    NSLog(@"utils dealloc");
++ (UINavigationController *)tabRootNav{
+    return  (UINavigationController *)[(UITabBarController *)kWindow.rootViewController selectedViewController];
 }
-
 @end
 
 NSString *itoS(int n){

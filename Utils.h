@@ -31,6 +31,8 @@
 #define IOS4_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"4.0"] != NSOrderedAscending )
 #define IOS3_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"3.0"] != NSOrderedAscending )
 #define namedImage(a) [UIImage imageNamed:a]
+#define DECLARE_SINGLETON_FOR_CLASS(classname) \
++ (classname*)shared##classname;
 #define SYNTHESIZE_SINGLETON_FOR_CLASS(classname) \
 static classname *shared##classname = nil; \
 + (classname *)shared##classname \
@@ -65,6 +67,7 @@ BOOL validateEmpty(NSArray *fields,NSArray *infos);
 + (id) jsonStrToObj:(NSString *)str;
 + (void) assert:(BOOL) ok desc:(NSString *)desc;
 + (UINavigationController *)rootNav;
++ (UINavigationController *)tabRootNav;
 @end
 NSString *itoS(int n);
 NSNumber *itoN(int n);

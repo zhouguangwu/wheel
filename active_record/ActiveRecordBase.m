@@ -202,7 +202,7 @@ FMDatabase *_db;
 }
 
 + (void) destoryAll{
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@;VACUUM;", [self.class tableName]];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@;VACUUM; update sqlite_sequence set seq=0 where name='%@';", [self.class tableName],self.class.tableName];
     [self.class runSql: sql];
 }
 #pragma mark查
@@ -228,7 +228,26 @@ FMDatabase *_db;
     }else if([where isKindOfClass:NSDictionary.class]){
         NSMutableArray *conditions = [NSMutableArray array];
         for (NSString *key in (NSDictionary *)where) {
-            [conditions addObject:[NSString stringWithFormat:@"%@ = '%@'",key,where[key]]];
+            id value = where[key];
+            NSString *condition = @"";
+            if ([value isKindOfClass:NSString.class]) {
+                condition = [NSString stringWithFormat:@"%@ = '%@'",key,value];
+            }else if([value isKindOfClass:NSArray.class]){
+                NSMutableArray *tmp = [NSMutableArray array];
+                for (id a in (NSArray *)value) {
+                    if ([a isKindOfClass:NSString.class]) {
+                        [tmp addObject:[NSString stringWithFormat:@"'%@'",a]];
+                    }else{
+                        [tmp addObject:a];
+                    }
+                }
+                condition = [NSString stringWithFormat:@"%@ IN (%@)",key,[tmp componentsJoinedByString:@","]];
+            }else if ([value isKindOfClass:NSNumber.class]){
+                condition = [NSString stringWithFormat:@"%@ = %@",key,value];
+            }else{
+                NSParameterAssert(NO);
+            }
+            [conditions addObject:condition];
         }
         whereStr = [conditions componentsJoinedByString:@" AND "];
     }

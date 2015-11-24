@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@interface KeyValue : NSObject
+@property id key,value;
+@end
 @interface UIView (Helper)
 - (void) toast:(NSString *)str;
 - (UIImage *) renderImage;
@@ -63,6 +65,7 @@
 
 @interface NSArray (Helper)
 -(NSArray *) pluck:(NSString *)name;
+-(NSArray *) group:(NSString *)name;
 -(NSArray *) kPluck:(NSString *)name;
 -(NSArray *) reverse;
 //filter不会copy对象, 只会吧符合条件的对象搞到一个新数组里面去

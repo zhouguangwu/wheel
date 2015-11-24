@@ -202,7 +202,7 @@ FMDatabase *_db;
 }
 
 + (void) destoryAll{
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@;", [self.class tableName]];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@;VACUUM;", [self.class tableName]];
     [self.class runSql: sql];
 }
 #pragma mark查

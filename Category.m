@@ -10,7 +10,8 @@
 #import "Factory.h"
 #import "Utils.h"
 #import <objc/runtime.h>
-
+@implementation KeyValue
+@end
 @implementation UIView (Helper)
 - (void) toast:(NSString *)str{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
@@ -243,6 +244,28 @@
         SEL sel = NSSelectorFromString(name);
         [results addObject:[obj performSelector:sel]];
     }
+    return results;
+}
+- (NSArray *)group:(NSString *)name{
+    NSMutableArray *results = [NSMutableArray array];
+    //逻辑分离
+    NSArray *keys = [self pluck:name];
+    keys = [[NSSet setWithArray:keys] allObjects];
+    for (NSString *key in keys) {
+        KeyValue *kv = [[KeyValue alloc] init];
+        kv.key = key;
+        kv.value = [self filter:^(id obj){
+            SEL sel = NSSelectorFromString(name);
+            id value = [obj performSelector:sel];
+            if (value == key) {
+                return YES;
+            }else{
+                return NO;
+            }
+        }];
+        [results addObject:kv];
+    }
+    
     return results;
 }
 #pragma clang diagnostic pop

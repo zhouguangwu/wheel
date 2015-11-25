@@ -115,5 +115,6 @@ typedef void (^ButtonClieckedBlock)(void);
 @interface NSObject(Helper)
 -(NSArray *)propertyNames;
 -(NSString *)className;
+-(void)showDealloc;
 @end
 

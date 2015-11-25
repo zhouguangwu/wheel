@@ -81,9 +81,7 @@ BOOL validateEmpty(NSArray *fields,NSArray *infos){
     return (UINavigationController *)kWindow.rootViewController;
 }
 
-+ (UINavigationController *)tabRootNav{
-    return  (UINavigationController *)[(UITabBarController *)kWindow.rootViewController selectedViewController];
-}
+
 @end
 
 NSString *itoS(int n){
@@ -159,4 +157,8 @@ void toast(NSString *str){
 void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection direction){
     CGPoint ps[3] = {origin,CGPointMake(w/2/sin(45)+origin.x, origin.y+w/2/sin(45)),CGPointMake(w+origin.x, origin.y)};
     memcpy(points, ps, sizeof(CGPoint)*3);
+}
+
+UINavigationController * tabRootNav(){
+    return  (UINavigationController *)[(UITabBarController *)kWindow.rootViewController selectedViewController];
 }

@@ -61,6 +61,7 @@
 @interface UIImage (Helper)
 - (NSString *) base64String;
 - (UIImage *)cut;
+- (UIImage *)compress:(UInt16)k;
 @end
 
 @interface NSArray (Helper)

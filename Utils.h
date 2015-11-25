@@ -67,7 +67,6 @@ BOOL validateEmpty(NSArray *fields,NSArray *infos);
 + (id) jsonStrToObj:(NSString *)str;
 + (void) assert:(BOOL) ok desc:(NSString *)desc;
 + (UINavigationController *)rootNav;
-+ (UINavigationController *)tabRootNav;
 @end
 NSString *itoS(int n);
 NSNumber *itoN(int n);
@@ -84,3 +83,4 @@ typedef enum{
     MakePointsDirectionRight
 } MakePointsDirection;
 void make3Points(CGPoint *points,CGPoint origin,CGFloat width,MakePointsDirection direction);
+UINavigationController * tabRootNav();

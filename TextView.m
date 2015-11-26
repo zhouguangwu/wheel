@@ -27,7 +27,6 @@
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self showDealloc];
 }
 -(void)_end{
     if (!self.hasText) {

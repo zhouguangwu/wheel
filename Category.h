@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#define showDealloc \
+-(void)dealloc{\
+NSLog(@"%@ dealloc",self.class);\
+}
 @interface KeyValue : NSObject
 @property id key,value;
 @end
@@ -116,6 +120,5 @@ typedef void (^ButtonClieckedBlock)(void);
 @interface NSObject(Helper)
 -(NSArray *)propertyNames;
 -(NSString *)className;
--(void)showDealloc;
 @end
 

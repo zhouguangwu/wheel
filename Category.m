@@ -456,7 +456,4 @@
 -(NSString *)className{
     return NSStringFromClass(self.class);
 }
--(void)showDealloc{
-    NSLog(@"%@ dealloc",self.class);
-}
 @end

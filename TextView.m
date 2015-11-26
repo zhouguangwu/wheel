@@ -26,6 +26,7 @@
     self.attributedText = attributedPlaceHolder;
 }
 -(void)dealloc{
+    NSLog(@"textview dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)_end{

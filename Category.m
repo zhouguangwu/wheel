@@ -101,8 +101,15 @@
 }
 
 - (void) round{
-    self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = self.frame.size.width/2;
+    if (self.width > 0) {
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = self.frame.size.width/2;
+    }else{//autolayout问题
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.layer.masksToBounds = YES;
+            self.layer.cornerRadius = self.frame.size.width/2;
+        });
+    }
 }
 
 - (void) round:(CGFloat)radius{

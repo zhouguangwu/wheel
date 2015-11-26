@@ -11,6 +11,7 @@
 -(void)dealloc{\
 NSLog(@"%@ dealloc",self.class);\
 }
+//和nsdicitonar不同, 只有一个key,一个v
 @interface KeyValue : NSObject
 @property id key,value;
 @end

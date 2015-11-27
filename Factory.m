@@ -60,6 +60,7 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
     NSAssert(texts.count == attrs.count, @"字的个数和attrs的个数不一样");
     UILabel *label = CGRectIsEmpty(frame) ? UILabel.new : [[UILabel alloc]  initWithFrame:frame];
     label.attributedText = [NSAttributedString stringWithTexts:texts attr:attr attrs:attrs];
+    label.numberOfLines = 0;
     return label;
 }
 @end

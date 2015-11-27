@@ -87,6 +87,7 @@ NSLog(@"%@ dealloc",self.class);\
 - (NSDate *) toDate;
 - (NSString *)base64Encode;
 - (NSString *)base64Decode;
+-(NSString *)addN;
 @end
 @interface UITableView (Helper)
 - (void) emptyFooter;

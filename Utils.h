@@ -54,6 +54,9 @@ h.removeFromSuperViewOnHide = YES;
 #define showHub() [MBProgressHUD showHUDAddedTo:kWindow animated:YES]
 #define hideHub() [MBProgressHUD hideHUDForView:kWindow animated:YES]
 #define kToastTime 1
+#define FontAttribute(s) NSFontAttributeName:[UIFont systemFontOfSize:s]
+#define ColorAttributeWhite ColorAttribute([UIColor whiteColor])
+#define ColorAttribute(c) NSForegroundColorAttributeName:c
 BOOL validateEmpty(NSArray *fields,NSArray *infos);
 @interface Utils : NSObject
 + (void) runBackGroud:(void (^)(void))block;

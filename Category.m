@@ -148,6 +148,17 @@
     [alertView show];
 }
 
+-(void)quickAlert:(NSString *)message{
+    UIAlertController *c = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIViewController *root = kWindow.rootViewController;
+    __weak typeof(root) weakRoot = root;
+    UIAlertAction *a = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){
+        [weakRoot dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [c addAction:a];
+    [root presentViewController:c animated:YES completion:^{}];
+}
+
 - (void) debug{
     UIImageView *debugView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     debugView.image = [UIImage imageNamed:@"d.jpg"];
@@ -181,6 +192,7 @@
     item.title = @"";
     self.navigationItem.backBarButtonItem = item;
 }
+
 @end
 
 @implementation UITextField(Helper)

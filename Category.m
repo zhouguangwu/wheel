@@ -133,6 +133,10 @@
 -(CGFloat)height{
     return self.frame.size.height;
 }
+
+-(void)hideKeybord{
+    [[self frstResponder] resignFirstResponder];
+}
 @end
 
 @implementation UIViewController(Helper)

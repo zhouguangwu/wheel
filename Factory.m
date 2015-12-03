@@ -170,11 +170,7 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
         NSAssert([attrs[i] isKindOfClass:NSDictionary.class], @"%d不是字典",i);
         NSAssert([texts[i] isKindOfClass:NSString.class], @"%d不是string",i);
         [attributes addEntriesFromDictionary:attrs[i]];
-        NSString *thisStr = texts[i];
-        if (![thisStr hasSuffix:@"\n"]) {
-            thisStr = thisStr.addN;
-        }
-        NSAttributedString *str = [[NSAttributedString alloc] initWithString:thisStr attributes:attributes];
+        NSAttributedString *str = [[NSAttributedString alloc] initWithString:texts[i] attributes:attributes];
         [totalStr appendAttributedString:str];
     }
     return totalStr;

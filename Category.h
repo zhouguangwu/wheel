@@ -11,6 +11,9 @@
 -(void)dealloc{\
 NSLog(@"%@ dealloc",self.class);\
 }
+#define ViewControllerHideKeybordWhenTap \
+UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(hideKeybord)];\
+[self.view addGestureRecognizer:tap];
 //和nsdicitonar不同, 只有一个key,一个v
 @interface KeyValue : NSObject
 @property id key,value;
@@ -35,6 +38,7 @@ NSLog(@"%@ dealloc",self.class);\
 - (UIView *)frstResponder;
 -(CGFloat)width;
 -(CGFloat)height;
+-(void)hideKeybord;
 @end
 
 @interface UIViewController (Helper)

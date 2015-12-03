@@ -159,6 +159,18 @@
     [root presentViewController:c animated:YES completion:^{}];
 }
 
+-(void)confirmWithTitle:(NSString *)title message:(NSString *)message ok:(void (^)(void))block{
+    UIAlertController *c = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *a1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *a){
+    }];
+    UIAlertAction *a2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){
+        block();
+    }];
+    [c addAction:a1];
+    [c addAction:a2];
+    [self presentViewController:c animated:YES completion:nil];
+}
+
 - (void) debug{
     UIImageView *debugView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     debugView.image = [UIImage imageNamed:@"d.jpg"];

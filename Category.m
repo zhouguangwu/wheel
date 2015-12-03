@@ -226,8 +226,9 @@
 @implementation UINavigationController (Helper)
 - (void) changeTopViewController:(UIViewController *)vc animated:(BOOL)animated{
     NSParameterAssert([vc isKindOfClass:UIViewController.class]);
-    [self popViewControllerAnimated:NO];
-    [self pushViewController:vc animated:animated];
+    NSMutableArray *vcs = [NSMutableArray arrayWithArray:self.viewControllers];
+    vcs[vcs.count-1] = vc;
+    [self setViewControllers:vcs animated:animated];
 }
 @end
 

@@ -147,16 +147,38 @@ CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* pat
     return border;
 }
 
+CAShapeLayer *makeLine(CGPoint *points,UInt8 length){
+    CAShapeLayer *border = [CAShapeLayer layer];
+    border.strokeColor = [UIColor blackColor].CGColor;
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:*points];
+    for (UInt8 i = 1; i < length; i++) {
+        [path addLineToPoint:points[i]];
+        [path moveToPoint:points[i]];
+    }
+    border.path = path.CGPath;
+    return border;
+}
+
+
 void toast(NSString *str){
     UIView *toastView = [[UIView alloc] initWithFrame:CGRectMake(0, (kScreenHeight-40)/2, kScreenWidth, 40)];
     [kWindow addSubview:toastView];
     [toastView toast:str];
     [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:kToastTime+0.1];
 }
-
+//w是边长, 从左到右,从上到下
 void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection direction){
-    CGPoint ps[3] = {origin,CGPointMake(w/2/sin(45)+origin.x, origin.y+w/2/sin(45)),CGPointMake(w+origin.x, origin.y)};
-    memcpy(points, ps, sizeof(CGPoint)*3);
+    CGFloat half = w*sin(60*M_PI/180);
+    if (direction == MakePointsDirectionBottom) {
+        CGPoint ps[3] = {origin,CGPointMake(w/2+origin.x, origin.y+half),CGPointMake(w+origin.x, origin.y)};
+        memcpy(points, ps, sizeof(CGPoint)*3);
+    }else if (MakePointsDirectionLeft){
+        CGPoint ps[3] = {origin,CGPointMake(half+origin.x, origin.y-w/2),CGPointMake(half+origin.x, origin.y+w/2)};
+        memcpy(points, ps, sizeof(CGPoint)*3);
+    }else{
+        assert(NO);
+    }
 }
 
 UINavigationController * tabRootNav(){

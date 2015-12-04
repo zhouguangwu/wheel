@@ -354,6 +354,13 @@
     
     return resultObj;
 }
+-(NSArray *)add:(NSString *)sufix{
+    NSMutableArray *result = [NSMutableArray array];
+    for (id obj in self) {
+        [result addObject:[NSString stringWithFormat:@"%@%@",obj,sufix]];
+    }
+    return result;
+}
 @end
 
 @implementation UITableViewCell (Helper)

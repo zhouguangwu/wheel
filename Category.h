@@ -83,6 +83,7 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 //filter不会copy对象, 只会吧符合条件的对象搞到一个新数组里面去
 -(NSArray *) filter:(BOOL (^)(id))condition;
 -(id) objOfClass:(Class) klass;
+-(NSArray *)add:(NSString *)sufix;
 @end
 
 @interface UITableViewCell (Helper)

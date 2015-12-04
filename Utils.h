@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#define todayComponents [[NSCalendar currentCalendar] components:NSUIntegerMax fromDate:NSDate.date]
 //afn
 #define isNetworkOk [AFNetworkReachabilityManager sharedManager].reachable
 #define check_network if (!isNetworkOk) {\

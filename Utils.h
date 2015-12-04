@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#define isNetworkOk [AFNetworkReachabilityManager sharedManager].reachable
 #define kDocumentsPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define kBarHeight 44
 #define Ios6 ([[UIDevice currentDevice].systemVersion floatValue] < 7)

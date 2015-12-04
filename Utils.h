@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+//afn
 #define isNetworkOk [AFNetworkReachabilityManager sharedManager].reachable
+#define check_network if (!isNetworkOk) {\
+toast(@"请连接网络");\
+return;\
+}
+#define check_network_and_return(a) if (!isNetworkOk) {\
+toast(@"请连接网络");\
+return a;\
+}
+
 #define kDocumentsPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define kBarHeight 44
 #define Ios6 ([[UIDevice currentDevice].systemVersion floatValue] < 7)

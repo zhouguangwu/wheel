@@ -84,6 +84,7 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 -(NSArray *) filter:(BOOL (^)(id))condition;
 -(id) objOfClass:(Class) klass;
 -(NSArray *)add:(NSString *)sufix;
+-(NSRange)rangeOf:(NSArray *)arr;
 @end
 
 @interface UITableViewCell (Helper)

@@ -361,6 +361,10 @@
     }
     return result;
 }
+-(NSRange)rangeOf:(NSArray *)arr{
+    NSParameterAssert(arr.count > 0);
+    return NSMakeRange([self indexOfObject:arr.firstObject], arr.count);
+}
 @end
 
 @implementation UITableViewCell (Helper)

@@ -110,18 +110,15 @@ void exceptionHandler(NSException *exception){
 }
 
 CAShapeLayer* makePolygon(CGPoint *points,UInt8 count){
-    CAShapeLayer *chartLine = [CAShapeLayer layer];
-    UIBezierPath *progressline = [UIBezierPath bezierPath];
-    for (UInt8 i = 0; i < count; i++) {
-        if (i == 0) {
-            [progressline moveToPoint:points[i]];
-        }else{
-            [progressline addLineToPoint:points[i]];
-        }
+    CAShapeLayer *border = [CAShapeLayer layer];
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:*points];
+    for (UInt8 i = 1; i < count; i++) {
+        [path addLineToPoint:points[i]];
     }
 //    [progressline stroke];
-    chartLine.path = progressline.CGPath;
-    return chartLine;
+    border.path = path.CGPath;
+    return border;
 }
 CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* patterns){
     CAShapeLayer *border = [CAShapeLayer layer];
@@ -135,13 +132,12 @@ CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* 
 CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* patterns){
     assert(patterns.count > 0);
     CAShapeLayer *border = [CAShapeLayer layer];
-    border.strokeColor = [UIColor blackColor].CGColor;
     border.lineDashPattern = patterns;
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:*points];
     for (UInt8 i = 1; i < length; i++) {
         [path addLineToPoint:points[i]];
-        [path moveToPoint:points[i]];
+        [path moveToPoint:points[i]];//每次move一下, 让他无法形成包围圈
     }
     border.path = path.CGPath;
     return border;
@@ -167,16 +163,20 @@ void toast(NSString *str){
     [toastView toast:str];
     [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:kToastTime+0.1];
 }
-//w是边长, 从左到右,从上到下
+//w是边长, 先从左到右,再从上到下
 void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection direction){
-    CGFloat half = w*sin(60*M_PI/180);
+    CGFloat half = w*sin(60*M_PI/180);//中线的长度
     if (direction == MakePointsDirectionBottom) {
         CGPoint ps[3] = {origin,CGPointMake(w/2+origin.x, origin.y+half),CGPointMake(w+origin.x, origin.y)};
         memcpy(points, ps, sizeof(CGPoint)*3);
-    }else if (MakePointsDirectionLeft){
+    }else if (direction == MakePointsDirectionLeft){
         CGPoint ps[3] = {origin,CGPointMake(half+origin.x, origin.y-w/2),CGPointMake(half+origin.x, origin.y+w/2)};
         memcpy(points, ps, sizeof(CGPoint)*3);
-    }else{
+    }else if (direction == MakePointsDirectionTop){
+        CGPoint ps[3] = {CGPointMake(origin.x-w/2, origin.y+half),origin,CGPointMake(w/2+origin.x, origin.y+half)};
+        memcpy(points, ps, sizeof(CGPoint)*3);
+    }
+    else{
         assert(NO);
     }
 }

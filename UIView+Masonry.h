@@ -12,4 +12,5 @@
 -(void)mas_right:(UIView *)left width:(id)width height:(id)height offset:(CGFloat)offset;
 -(void)mas_css:(UIView *)css width:(id)width height:(id)height offset:(CGFloat)offset;
 -(void)mas_center:(UIView *)center width:(id)width height:(id)height offset:(CGFloat)offset;
+-(void)mas_right_bottom:(UIView *)bottom width:(id)width height:(id)height;
 @end

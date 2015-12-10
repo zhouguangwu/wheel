@@ -33,4 +33,12 @@
         maker.height.equalTo(height);
     }];
 }
+-(void)mas_right_bottom:(UIView *)bottom width:(id)width height:(id)height{
+    [self mas_makeConstraints:^(MASConstraintMaker *maker){
+        maker.width.equalTo(width);
+        maker.height.equalTo(height);
+        maker.right.equalTo(bottom.mas_right);
+        maker.bottom.equalTo(@0);
+    }];
+}
 @end

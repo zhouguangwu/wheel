@@ -76,14 +76,14 @@ BOOL validateEmpty(NSArray *fields,NSArray *infos);
 + (void) runOnUiThread:(void (^)(void))block;
 + (void) write:(NSString *)value key:(NSString *)key;
 + (NSString *) get:(NSString *)key;
-+ (NSString *) itoS:(int) n;
++ (NSString *) itoS:(NSInteger) n;
 + (NSNumber *)itoN:(int) i;
 + (NSString *) objToJsonStr:(id) obj;
 + (id) jsonStrToObj:(NSString *)str;
 + (void) assert:(BOOL) ok desc:(NSString *)desc;
 + (UINavigationController *)rootNav;
 @end
-NSString *itoS(int n);
+NSString *itoS(NSInteger n);
 NSNumber *itoN(int n);
 UINavigationController * rootNav();
 void exceptionHandler(NSException *exception);

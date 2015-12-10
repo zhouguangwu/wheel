@@ -53,7 +53,7 @@ BOOL validateEmpty(NSArray *fields,NSArray *infos){
     return [defaults valueForKey:key];
 }
 
-+ (NSString *) itoS:(int)n{
++ (NSString *) itoS:(NSInteger)n{
     return itoS(n);
 }
 
@@ -84,8 +84,8 @@ BOOL validateEmpty(NSArray *fields,NSArray *infos){
 
 @end
 
-NSString *itoS(int n){
-    return [NSString stringWithFormat:@"%d",n];
+NSString *itoS(NSInteger n){
+    return [NSString stringWithFormat:@"%d",(int)n];
 }
 
 NSNumber *itoN(int n){

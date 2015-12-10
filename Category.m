@@ -363,6 +363,7 @@
 }
 -(NSRange)rangeOf:(NSArray *)arr{
     NSParameterAssert(arr.count > 0);
+    NSParameterAssert(self.count >= arr.count);
     return NSMakeRange([self indexOfObject:arr.firstObject], arr.count);
 }
 @end

@@ -38,7 +38,7 @@
     [mask addGestureRecognizer:tap];
     CGPoint p3[3];
     CGFloat w = 20;
-    make3Points(p3, CGPointMake(_point.x+_width/2-w/2, _point.y), w, MakePointsDirectionTop);
+    make3Points(p3, CGPointMake(_point.x+_width/2-w/2, _point.y+w*sin(60*M_PI/180)), w, MakePointsDirectionTop);
     CAShapeLayer *l = makePolygon(p3, 3);
     l.fillColor = _color.CGColor;
     l.strokeColor = _color.CGColor;

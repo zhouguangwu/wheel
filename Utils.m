@@ -173,7 +173,7 @@ void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection di
         CGPoint ps[3] = {origin,CGPointMake(half+origin.x, origin.y-w/2),CGPointMake(half+origin.x, origin.y+w/2)};
         memcpy(points, ps, sizeof(CGPoint)*3);
     }else if (direction == MakePointsDirectionTop){
-        CGPoint ps[3] = {CGPointMake(origin.x-w/2, origin.y+half),origin,CGPointMake(w/2+origin.x, origin.y+half)};
+        CGPoint ps[3] = {origin,CGPointMake(origin.x+w/2, origin.y-half),CGPointMake(origin.x+w, origin.y)};
         memcpy(points, ps, sizeof(CGPoint)*3);
     }
     else{

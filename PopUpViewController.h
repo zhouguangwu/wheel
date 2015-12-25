@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define cellYInTableView(cell,tableView) cell.frame.origin.y-tableView.contentOffset.y + kBarHeight
 @interface PopUpViewController : UIViewController{
     @public
     void (^selected)(PopUpViewController*,UInt8);

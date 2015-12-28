@@ -34,7 +34,7 @@
     mask.backgroundColor = [UIColor blackColor];
     mask.alpha = 0.7;
     [self.view addSubview:mask];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_cancel)];
     [mask addGestureRecognizer:tap];
     CGPoint p3[3];
     CGFloat w = 20;
@@ -68,6 +68,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     selected(self,indexPath.row);
+}
+-(void)_cancel{
+    if (canceled) {
+        canceled(self);
+    }else{
+        [self close];
+    }
 }
 -(void)close{
     [Utils runOnUiThread:^{

@@ -11,6 +11,7 @@
 @interface PopUpViewController : UIViewController{
     @public
     void (^selected)(PopUpViewController*,UInt8);
+    void (^canceled)(PopUpViewController *);
 }
 -(instancetype)initWithData:(NSArray *)data;
 @property CGPoint point;

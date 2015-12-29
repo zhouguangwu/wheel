@@ -510,3 +510,16 @@
     return NSStringFromClass(self.class);
 }
 @end
+
+@implementation AVAudioPlayer (Helper)
++(void)play:(NSString *)path repeat:(BOOL)is{
+    NSError *err;
+    static AVAudioPlayer *player;//这个对象不能死得额
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:&err];
+    if (is) {
+        player.numberOfLoops = -1;
+    }
+    NSAssert(player, err.description);
+    [player play];
+}
+@end

@@ -133,3 +133,7 @@ typedef void (^ButtonClieckedBlock)(void);
 -(NSString *)className;
 @end
 
+#import <AVFoundation/AVFoundation.h>
+@interface AVAudioPlayer (Helper)
++(void)play:(NSString *)path repeat:(BOOL)is;
+@end

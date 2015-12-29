@@ -72,6 +72,13 @@ h.removeFromSuperViewOnHide = YES;
 #define FontAttribute(s) NSFontAttributeName:[UIFont systemFontOfSize:s]
 #define ColorAttributeWhite ColorAttribute([UIColor whiteColor])
 #define ColorAttribute(c) NSForegroundColorAttributeName:c
+#define BaiduMobStatLogViewController(viewController) \
+    static NSString *previousViewControllerName = nil;\
+    if (previousViewControllerName) {\
+        [[BaiduMobStat defaultStat] pageviewEndWithName:previousViewControllerName];\
+    }\
+    [[BaiduMobStat defaultStat] pageviewStartWithName:viewController.className];\
+    previousViewControllerName = viewController.className;
 BOOL validateEmpty(NSArray *fields,NSArray *infos);
 @interface Utils : NSObject
 + (void) runBackGroud:(void (^)(void))block;

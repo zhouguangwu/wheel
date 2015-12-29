@@ -96,6 +96,7 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 - (NSString *)base64Encode;
 - (NSString *)base64Decode;
 -(NSString *)addN;
+-(NSString *)toHtml;
 @end
 @interface UITableView (Helper)
 - (void) emptyFooter;

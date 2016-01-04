@@ -54,4 +54,8 @@
     [self leftTop];
     self.right.equalTo(@0);
 }
+-(void)leftTopBottom{
+    [self leftTop];
+    self.bottom.equalTo(@0);
+}
 @end

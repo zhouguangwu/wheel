@@ -17,4 +17,5 @@
 @interface MASConstraintMaker (mas)
 -(void)leftTop;
 -(void)leftTopRight;
+-(void)leftTopBottom;
 @end

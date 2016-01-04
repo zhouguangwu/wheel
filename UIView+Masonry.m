@@ -42,3 +42,16 @@
     }];
 }
 @end
+
+@implementation MASConstraintMaker (mas)
+
+-(void)leftTop{
+    self.left.equalTo(@0);
+    self.top.equalTo(@0);
+}
+
+-(void)leftTopRight{
+    [self leftTop];
+    self.right.equalTo(@0);
+}
+@end

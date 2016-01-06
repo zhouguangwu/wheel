@@ -19,7 +19,7 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 @property id key,value;
 @end
 @interface UIView (Helper)
-- (void) toast:(NSString *)str;
+- (void) toast:(NSString *)str time:(NSTimeInterval)t;
 - (UIImage *) renderImage;
 - (void) up:(int) offset;
 - (void) down:(int) offset;

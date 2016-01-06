@@ -102,6 +102,7 @@ CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* 
 CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* patterns);
 CAShapeLayer *makeLine(CGPoint *points,UInt8 length);
 void toast(NSString *str);
+void toastWithTime(NSString *str,NSTimeInterval t);
 typedef enum{
     MakePointsDirectionTop,
     MakePointsDirectionLeft,

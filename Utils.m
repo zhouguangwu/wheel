@@ -158,10 +158,13 @@ CAShapeLayer *makeLine(CGPoint *points,UInt8 length){
 
 
 void toast(NSString *str){
+    toastWithTime(str, kToastTime+0.1);
+}
+void toastWithTime(NSString *str,NSTimeInterval t){
     UIView *toastView = [[UIView alloc] initWithFrame:CGRectMake(0, (kScreenHeight-40)/2, kScreenWidth, 40)];
     [kWindow addSubview:toastView];
-    [toastView toast:str];
-    [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:kToastTime+0.1];
+    [toastView toast:str time:t];
+//    [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:t];
 }
 //w是边长, 先从左到右,再从上到下
 void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection direction){

@@ -13,7 +13,7 @@
 @implementation KeyValue
 @end
 @implementation UIView (Helper)
-- (void) toast:(NSString *)str{
+- (void) toast:(NSString *)str time:(NSTimeInterval)t{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     
     // Configure for text only and offset down
@@ -22,7 +22,7 @@
     hud.margin = 10.f;
     hud.removeFromSuperViewOnHide = YES;
     
-    [hud hide:YES afterDelay:kToastTime];
+    [hud hide:YES afterDelay:t];
 }
 
 - (UIImage *) renderImage{

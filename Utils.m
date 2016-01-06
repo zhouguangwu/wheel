@@ -164,7 +164,8 @@ void toastWithTime(NSString *str,NSTimeInterval t){
     UIView *toastView = [[UIView alloc] initWithFrame:CGRectMake(0, (kScreenHeight-40)/2, kScreenWidth, 40)];
     [kWindow addSubview:toastView];
     [toastView toast:str time:t];
-//    [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:t];
+#warning  待研究, 原因未知
+    [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:t];
 }
 //w是边长, 先从左到右,再从上到下
 void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection direction){
@@ -186,4 +187,9 @@ void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection di
 
 UINavigationController * tabRootNav(){
     return  (UINavigationController *)[(UITabBarController *)kWindow.rootViewController selectedViewController];
+}
+BOOL isIdCard(NSString *idCard){
+    NSString *regex2 = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
+    NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
+    return [identityCardPredicate evaluateWithObject:idCard];
 }

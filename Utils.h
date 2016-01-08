@@ -39,6 +39,7 @@ return a;\
 #define kStrongSelfFromWeak(w) kStrong(w,self)
 #define goStrongSelf kStrongSelfFromWeak(weakSelf);
 #define kIsShort kScreenHeight < 500
+#define IOS9_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"9.0"] != NSOrderedAscending )
 #define IOS8_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"8.0"] != NSOrderedAscending )
 #define IOS7_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
 #define IOS6_OR_LATER	( [[[UIDevice currentDevice] systemVersion] compare:@"6.0"] != NSOrderedAscending )

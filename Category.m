@@ -272,11 +272,12 @@
 
 -(UIImage *)compress:(UInt16)k{
     UIImage *finalImage = self;
-    if (UIImagePNGRepresentation(self).length > k * 1024) {//大于阀值
-        CGFloat delta = (k*1024) / UIImageJPEGRepresentation(self,1.0).length;
+    NSData *beforeData = UIImageJPEGRepresentation(self, 1.0);
+    if (beforeData.length > k * 1024) {//大于阀值
+        CGFloat delta = (k*1024) / beforeData.length;
         finalImage = [UIImage imageWithData: UIImageJPEGRepresentation(self, delta)];
+        NSLog(@"压缩前%d,压缩后%d,系数%f",(int)beforeData.length,(int)UIImageJPEGRepresentation(finalImage, 1.0).length,(float)delta);
     }
-    NSLog(@"压缩前%d,压缩后%d",(int)UIImageJPEGRepresentation(self, 1.0).length,(int)UIImageJPEGRepresentation(finalImage, 1.0).length);
     return finalImage;
 }
 @end

@@ -281,16 +281,9 @@
     return finalImage;
 }
 @end
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored"-Warc-performSelector-leaks"
 @implementation NSArray (Helper)
 - (NSArray *)pluck:(NSString *)name{
-    NSMutableArray *results = [NSMutableArray array];
-    for (id obj in self) {
-        SEL sel = NSSelectorFromString(name);
-        [results addObject:[obj performSelector:sel]];
-    }
-    return results;
+    return [self valueForKey:name];
 }
 - (NSArray *)group:(NSString *)name{
     NSMutableArray *results = [NSMutableArray array];
@@ -301,8 +294,7 @@
         KeyValue *kv = [[KeyValue alloc] init];
         kv.key = key;
         kv.value = [self filter:^(id obj){
-            SEL sel = NSSelectorFromString(name);
-            id value = [obj performSelector:sel];
+            id value = [obj valueForKey:name];
             if (value == key) {
                 return YES;
             }else{
@@ -314,15 +306,9 @@
     
     return results;
 }
-#pragma clang diagnostic pop
 
 - (NSArray *)kPluck:(NSString *)name{
-    NSMutableArray *results = [NSMutableArray array];
-    for (NSDictionary *dic in self) {
-        assert([dic isKindOfClass:NSDictionary.class]);
-        [results addObject:dic[name]];
-    }
-    return results;
+    return [self valueForKey:name];
 }
 
 -(NSArray *) reverse{

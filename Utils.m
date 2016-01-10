@@ -164,7 +164,7 @@ void toastWithTime(NSString *str,NSTimeInterval t){
     UIView *toastView = [[UIView alloc] initWithFrame:CGRectMake(0, (kScreenHeight-40)/2, kScreenWidth, 40)];
     [kWindow addSubview:toastView];
     [toastView toast:str time:t];
-#warning  待研究, 原因未知
+    //hub是自动hide的,但是背景必须手动
     [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:t];
 }
 //w是边长, 先从左到右,再从上到下

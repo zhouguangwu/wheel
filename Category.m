@@ -280,6 +280,21 @@
     }
     return finalImage;
 }
+-(UIImage *)compress2:(CGFloat)maxW{
+    if (self.size.width < maxW) {
+        return self;
+    }else{
+        CGFloat maxY = maxW*self.size.height/self.size.width;
+        UIGraphicsBeginImageContext(CGSizeMake(maxW, maxY));
+        [self drawInRect:CGRectMake(0, 0, maxW, maxY)];
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+#if DEBUG
+        NSLog(@"压缩前%d,压缩后%d",(int)UIImageJPEGRepresentation(self, 1).length,(int)UIImageJPEGRepresentation(newImage, 1).length);
+#endif
+        return newImage;
+    }
+}
 @end
 @implementation NSArray (Helper)
 - (NSArray *)pluck:(NSString *)name{

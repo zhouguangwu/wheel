@@ -73,6 +73,7 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 - (NSString *) base64String;
 - (UIImage *)cut;
 - (UIImage *)compress:(UInt16)k;
+- (UIImage *)compress2:(CGFloat)maxW;
 @end
 
 @interface NSArray (Helper)

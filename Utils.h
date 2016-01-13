@@ -67,7 +67,8 @@ h.labelText = title; \
 [kWindow addSubview:h]; \
 [h show:YES];\
 h.removeFromSuperViewOnHide = YES;
-#define showHub() [MBProgressHUD showHUDAddedTo:kWindow animated:YES]
+#define kHubTag 999
+#define showHub() MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:kWindow animated:YES];hub.tag=kHubTag;
 #define hideHub() [MBProgressHUD hideHUDForView:kWindow animated:YES]
 #define kToastTime 1
 #define FontAttribute(s) NSFontAttributeName:[UIFont systemFontOfSize:s]

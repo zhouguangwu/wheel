@@ -194,8 +194,7 @@ BOOL isIdCard(NSString *idCard){
     return [identityCardPredicate evaluateWithObject:idCard];
 }
 void redirectLogToFile(){
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = kDocumentsPath;
     NSString *fileName = @"ad.log";
     NSString *logFilePath = [documentsDirectory stringByAppendingPathComponent:fileName];
     freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);

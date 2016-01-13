@@ -289,7 +289,7 @@
         [self drawInRect:CGRectMake(0, 0, maxW, maxY)];
         UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-#if DEBUG
+#ifdef DEBUG
         NSLog(@"压缩前%d,size=%d,%d,压缩后%d,%d,%d",(int)UIImageJPEGRepresentation(self, 1).length,(int)self.size.width,(int)self.size.height,(int)UIImageJPEGRepresentation(newImage, 1).length,(int)newImage.size.width,(int)newImage.size.height);
 #endif
         return newImage;

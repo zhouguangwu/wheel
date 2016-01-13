@@ -114,3 +114,4 @@ typedef enum{
 void make3Points(CGPoint *points,CGPoint origin,CGFloat width,MakePointsDirection direction);
 UINavigationController * tabRootNav();
 BOOL isIdCard(NSString *idCard);
+void redirectLogToFile();

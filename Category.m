@@ -290,7 +290,7 @@
         UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
 #if DEBUG
-        NSLog(@"压缩前%d,压缩后%d",(int)UIImageJPEGRepresentation(self, 1).length,(int)UIImageJPEGRepresentation(newImage, 1).length);
+        NSLog(@"压缩前%d,size=%d,%d,压缩后%d,%d,%d",(int)UIImageJPEGRepresentation(self, 1).length,(int)self.size.width,(int)self.size.height,(int)UIImageJPEGRepresentation(newImage, 1).length,(int)newImage.size.width,(int)newImage.size.height);
 #endif
         return newImage;
     }

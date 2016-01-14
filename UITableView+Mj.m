@@ -7,6 +7,7 @@
 //
 
 #import "UITableView+Mj.h"
+#import "MJRefresh.h"
 
 const void *MjTableDelegateKey = &MjTableDelegateKey;
 const void *MjTablePageKey = &MjTablePageKey;

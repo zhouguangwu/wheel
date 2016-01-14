@@ -16,7 +16,7 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 [self.view addGestureRecognizer:tap];
 //和nsdicitonar不同, 只有一个key,一个v
 @interface KeyValue : NSObject
-@property id key,value;
+@property(retain) id key,value;
 @end
 @interface UIView (Helper)
 - (void) toast:(NSString *)str time:(NSTimeInterval)t;

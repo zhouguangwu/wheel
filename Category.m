@@ -134,6 +134,12 @@
 -(void)hideKeybord{
     [[self frstResponder] resignFirstResponder];
 }
+-(void)removeAllGestures{
+    NSArray *gess = self.gestureRecognizers;
+    for (UIGestureRecognizer *ges in gess) {
+        [self removeGestureRecognizer:ges];
+    }
+}
 @end
 
 @implementation UIViewController(Helper)
@@ -520,5 +526,26 @@
     }
     NSAssert(player, err.description);
     [player play];
+}
+@end
+@implementation MBProgressHUD(Helper)
++(instancetype)showInWindown{
+    MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:kWindow animated:YES];
+    hub.tag=kHubTag;
+    return hub;
+}
+const void *CloseHubBlockKey = &CloseHubBlockKey;
+-(void)_closeHub{
+    void (^block)(MBProgressHUD *) = objc_getAssociatedObject(self, CloseHubBlockKey);
+    [self.superview removeAllGestures];
+    [self hide:YES];
+    if (block) {
+        block(self);
+    }
+}
+-(void)clickToCancel:(void(^)(MBProgressHUD *))block{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_closeHub)];
+    [self.superview addGestureRecognizer:tap];
+    objc_setAssociatedObject(self, CloseHubBlockKey, block, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 @end

@@ -161,7 +161,12 @@ void toast(NSString *str){
     toastWithTime(str, kToastTime+0.1);
 }
 void toastWithTime(NSString *str,NSTimeInterval t){
+    const NSInteger tag = 444;
+    if ([kWindow viewWithTag:tag]) {
+        [[kWindow viewWithTag:tag] removeFromSuperview];
+    }
     UIView *toastView = [[UIView alloc] initWithFrame:CGRectMake(0, (kScreenHeight-40)/2, kScreenWidth, 40)];
+    toastView.tag = tag;
     [kWindow addSubview:toastView];
     [toastView toast:str time:t];
     //hub是自动hide的,但是背景必须手动

@@ -39,6 +39,7 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 -(CGFloat)width;
 -(CGFloat)height;
 -(void)hideKeybord;
+-(void)removeAllGestures;
 @end
 
 @interface UIViewController (Helper)
@@ -137,4 +138,8 @@ typedef void (^ButtonClieckedBlock)(void);
 #import <AVFoundation/AVFoundation.h>
 @interface AVAudioPlayer (Helper)
 +(void)play:(NSString *)path repeat:(BOOL)is;
+@end
+@interface MBProgressHUD(Helper)
++(instancetype)showInWindown;
+-(void)clickToCancel:(void(^)(MBProgressHUD *))block;
 @end

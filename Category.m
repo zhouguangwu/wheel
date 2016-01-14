@@ -101,14 +101,11 @@
 }
 
 - (void) round{
+    self.layer.masksToBounds = YES;
     if (self.constraints.count == 0) {
-        self.layer.masksToBounds = YES;
         self.layer.cornerRadius = self.frame.size.width/2;
     }else{//autolayout问题
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.layer.masksToBounds = YES;
-            self.layer.cornerRadius = self.frame.size.width/2;
-        });
+        self.layer.cornerRadius = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].width/2;
     }
 }
 

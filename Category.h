@@ -139,7 +139,3 @@ typedef void (^ButtonClieckedBlock)(void);
 @interface AVAudioPlayer (Helper)
 +(void)play:(NSString *)path repeat:(BOOL)is;
 @end
-@interface MBProgressHUD(Helper)
-+(instancetype)showInWindown;
--(void)clickToCancel:(void(^)(MBProgressHUD *))block;
-@end

@@ -18,6 +18,9 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 @interface KeyValue : NSObject
 @property(retain) id key,value;
 @end
+@interface MBProgressHUD (Helper)
+@property AFHTTPRequestOperation *operation;
+@end
 @interface UIView (Helper)
 - (void) toast:(NSString *)str time:(NSTimeInterval)t;
 - (UIImage *) renderImage;

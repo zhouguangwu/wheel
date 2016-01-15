@@ -12,6 +12,15 @@
 #import <objc/runtime.h>
 @implementation KeyValue
 @end
+const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
+@implementation MBProgressHUD (Helper)
+-(void)setOperation:(AFHTTPRequestOperation *)operation{
+    objc_setAssociatedObject(self, MBProgressHUDOperationKey, operation, OBJC_ASSOCIATION_RETAIN);
+}
+-(AFHTTPRequestOperation *)operation{
+    return objc_getAssociatedObject(self, MBProgressHUDOperationKey);
+}
+@end
 @implementation UIView (Helper)
 - (void) toast:(NSString *)str time:(NSTimeInterval)t{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];

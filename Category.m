@@ -12,6 +12,15 @@
 #import <objc/runtime.h>
 @implementation KeyValue
 @end
+const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
+@implementation MBProgressHUD (Helper)
+-(void)setOperation:(AFHTTPRequestOperation *)operation{
+    objc_setAssociatedObject(self, MBProgressHUDOperationKey, operation, OBJC_ASSOCIATION_RETAIN);
+}
+-(AFHTTPRequestOperation *)operation{
+    return objc_getAssociatedObject(self, MBProgressHUDOperationKey);
+}
+@end
 @implementation UIView (Helper)
 - (void) toast:(NSString *)str time:(NSTimeInterval)t{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
@@ -101,14 +110,11 @@
 }
 
 - (void) round{
+    self.layer.masksToBounds = YES;
     if (self.constraints.count == 0) {
-        self.layer.masksToBounds = YES;
         self.layer.cornerRadius = self.frame.size.width/2;
     }else{//autolayout问题
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.layer.masksToBounds = YES;
-            self.layer.cornerRadius = self.frame.size.width/2;
-        });
+        self.layer.cornerRadius = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].width/2;
     }
 }
 
@@ -136,6 +142,12 @@
 
 -(void)hideKeybord{
     [[self frstResponder] resignFirstResponder];
+}
+-(void)removeAllGestures{
+    NSArray *gess = self.gestureRecognizers;
+    for (UIGestureRecognizer *ges in gess) {
+        [self removeGestureRecognizer:ges];
+    }
 }
 @end
 

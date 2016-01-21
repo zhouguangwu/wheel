@@ -14,6 +14,7 @@
 @interface UITableView (Mj)
 @property(readonly) UInt8 page;
 @property UIView *noDataView;
+-(UInt8)beginPage;
 -(void)goMjWithBeginPage:(UInt8)page delegate:(id <MjDelegate>)delegate;
 -(void)endRefresh;
 -(void)endRefreshWithNoData;

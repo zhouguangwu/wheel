@@ -12,6 +12,7 @@
 #import <objc/runtime.h>
 @implementation KeyValue
 @end
+#ifdef MB_INSTANCETYPE
 const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
 @implementation MBProgressHUD (Helper)
 -(void)setOperation:(AFHTTPRequestOperation *)operation{
@@ -21,7 +22,9 @@ const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
     return objc_getAssociatedObject(self, MBProgressHUDOperationKey);
 }
 @end
+#endif
 @implementation UIView (Helper)
+#ifdef MB_INSTANCETYPE
 - (void) toast:(NSString *)str time:(NSTimeInterval)t{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     
@@ -33,6 +36,7 @@ const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
     
     [hud hide:YES afterDelay:t];
 }
+#endif
 
 - (UIImage *) renderImage{
     UIGraphicsBeginImageContext(self.frame.size);

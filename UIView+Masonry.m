@@ -23,7 +23,9 @@
         maker.left.equalTo(css.mas_left);
         maker.top.equalTo(css.mas_bottom).offset(offset);
         maker.width.equalTo(width);
-        maker.height.equalTo(height);
+        if (height) {
+            maker.height.equalTo(height);
+        }
     }];
 }
 -(void)mas_center:(UIView *)center width:(id)width height:(id)height offset:(CGFloat)offset{

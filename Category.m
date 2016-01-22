@@ -12,6 +12,7 @@
 #import <objc/runtime.h>
 @implementation KeyValue
 @end
+#ifdef MB_INSTANCETYPE
 const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
 @implementation MBProgressHUD (Helper)
 -(void)setOperation:(AFHTTPRequestOperation *)operation{
@@ -21,7 +22,9 @@ const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
     return objc_getAssociatedObject(self, MBProgressHUDOperationKey);
 }
 @end
+#endif
 @implementation UIView (Helper)
+#ifdef MB_INSTANCETYPE
 - (void) toast:(NSString *)str time:(NSTimeInterval)t{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     
@@ -33,6 +36,7 @@ const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
     
     [hud hide:YES afterDelay:t];
 }
+#endif
 
 - (UIImage *) renderImage{
     UIGraphicsBeginImageContext(self.frame.size);
@@ -171,16 +175,18 @@ const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
     [root presentViewController:c animated:YES completion:^{}];
 }
 
--(void)confirmWithTitle:(NSString *)title message:(NSString *)message ok:(void (^)(void))block{
+-(UIAlertController *)confirmWithTitle:(NSString *)title message:(NSString *)message ok:(void (^)(UIAlertController *))block{
     UIAlertController *c = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *a1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *a){
     }];
+    __weak typeof(c) weakC  =c;
     UIAlertAction *a2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){
-        block();
+        block(weakC);
     }];
     [c addAction:a1];
     [c addAction:a2];
     [self presentViewController:c animated:YES completion:nil];
+    return c;
 }
 
 - (void) debug{

@@ -156,7 +156,7 @@ CAShapeLayer *makeLine(CGPoint *points,UInt8 length){
     return border;
 }
 
-
+#ifdef MB_INSTANCETYPE
 void toast(NSString *str){
     toastWithTime(str, kToastTime+0.1);
 }
@@ -172,6 +172,7 @@ void toastWithTime(NSString *str,NSTimeInterval t){
     //hub是自动hide的,但是背景必须手动
     [toastView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:t];
 }
+#endif
 //w是边长, 先从左到右,再从上到下
 void make3Points(CGPoint *points,CGPoint origin,CGFloat w,MakePointsDirection direction){
     CGFloat half = w*sin(60*M_PI/180);//中线的长度

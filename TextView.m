@@ -46,4 +46,13 @@
         self.typingAttributes = @{};
     }
 }
+-(BOOL)hasText{
+    if (!super.hasText) {
+        return NO;
+    }
+    if (_placeHolder.length > 0 && [_placeHolder isEqualToString:self.text]) {//是placehoder
+        return NO;
+    }
+    return YES;
+}
 @end

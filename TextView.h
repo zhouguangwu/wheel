@@ -11,4 +11,5 @@
 @interface TextView : UITextView
 @property(nonatomic) NSString *placeHolder;
 @property(nonatomic) NSAttributedString *attributedPlaceHolder;
+-(BOOL)hasText;
 @end

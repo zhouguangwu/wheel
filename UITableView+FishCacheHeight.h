@@ -16,4 +16,5 @@
 -(void)fish_reloadData;
 -(void)fish_insertRowsAtIndexPaths:(NSArray *)paths;
 -(void)fish_reloadRowsAtIndexPaths:(NSArray *)paths;
+-(void)fish_cache_cell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath;
 @end

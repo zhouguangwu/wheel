@@ -15,6 +15,7 @@ const void *CacheHeightKey = &CacheHeightKey;
 }
 -(NSCache *)fish_cache{
     NSCache *hs = objc_getAssociatedObject(self, &CacheHeightKey);
+    NSParameterAssert(hs);
     return hs;
 }
 -(NSString *)fish_cacheKeyFromPath:(NSIndexPath *)indexPath{
@@ -30,8 +31,7 @@ const void *CacheHeightKey = &CacheHeightKey;
     }else{
         NSLog(@"没有缓存中");
         UITableViewCell *cell = [self.dataSource tableView:self cellForRowAtIndexPath:indexPath];
-        value = @([cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height);
-        [cache setObject:value forKey:[self fish_cacheKeyFromPath:indexPath]];
+        [self fish_cache_cell:cell forIndexPath:indexPath];
     }
     NSLog(@"计算出高度了  %d %d   %@",(int)indexPath.section,(int)indexPath.row,value);
     return [value floatValue];
@@ -46,5 +46,11 @@ const void *CacheHeightKey = &CacheHeightKey;
     for (NSIndexPath *indexPath in paths) {
         [[self fish_cache] removeObjectForKey:[self fish_cacheKeyFromPath:indexPath]];
     }
+}
+-(void)fish_cache_cell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath{
+    NSCache *cache= [self fish_cache];
+    id value = @([cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height);
+    NSLog(@"存储高度%d,%@",indexPath.row,value);
+    [cache setObject:value forKey:[self fish_cacheKeyFromPath:indexPath]];
 }
 @end

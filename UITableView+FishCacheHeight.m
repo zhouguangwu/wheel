@@ -50,7 +50,7 @@ const void *CacheHeightKey = &CacheHeightKey;
 -(void)fish_cache_cell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath{
     NSCache *cache= [self fish_cache];
     id value = @([cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height);
-    NSLog(@"存储高度%d,%@",indexPath.row,value);
+    NSLog(@"存储高度%d,%@",(int)indexPath.row,value);
     [cache setObject:value forKey:[self fish_cacheKeyFromPath:indexPath]];
 }
 @end

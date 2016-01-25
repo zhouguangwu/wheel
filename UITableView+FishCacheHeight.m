@@ -18,13 +18,10 @@ const void *CacheHeightKey = &CacheHeightKey;
     NSParameterAssert(hs);
     return hs;
 }
--(NSString *)fish_cacheKeyFromPath:(NSIndexPath *)indexPath{
-    return [NSString stringWithFormat:@"%d_%d",(int)indexPath.section,(int)indexPath.row];
-}
 
 -(CGFloat)fish_heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSCache *cache= [self fish_cache];
-    id value = [cache objectForKey:[self fish_cacheKeyFromPath:indexPath]];
+    id value = [cache objectForKey:indexPath.fish_CacheKey];
     if (value) {
         NSLog(@"缓存命中 ");
         return [value floatValue];
@@ -44,13 +41,18 @@ const void *CacheHeightKey = &CacheHeightKey;
 }
 -(void)fish_reloadRowsAtIndexPaths:(NSArray *)paths{
     for (NSIndexPath *indexPath in paths) {
-        [[self fish_cache] removeObjectForKey:[self fish_cacheKeyFromPath:indexPath]];
+        [[self fish_cache] removeObjectForKey:indexPath.fish_CacheKey];
     }
 }
 -(void)fish_cache_cell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath{
     NSCache *cache= [self fish_cache];
     id value = @([cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height);
     NSLog(@"存储高度%d,%@",(int)indexPath.row,value);
-    [cache setObject:value forKey:[self fish_cacheKeyFromPath:indexPath]];
+    [cache setObject:value forKey:indexPath.fish_CacheKey];
+}
+@end
+@implementation NSIndexPath (FishCacheHeight)
+-(NSString *)fish_CacheKey{
+    return [NSString stringWithFormat:@"%d_%d",(int)self.section,(int)self.row];
 }
 @end

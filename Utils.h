@@ -100,8 +100,13 @@ NSNumber *itoN(int n);
 UINavigationController * rootNav();
 void exceptionHandler(NSException *exception);
 CAShapeLayer* makePolygon(CGPoint *points,UInt8 count);
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >  __IPHONE_8_4
 CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* patterns);
 CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* patterns);
+#else
+CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray* patterns);
+CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray* patterns);
+#endif
 CAShapeLayer *makeLine(CGPoint *points,UInt8 length);
 #ifdef MB_INSTANCETYPE
 void toast(NSString *str);

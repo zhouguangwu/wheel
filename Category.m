@@ -98,7 +98,11 @@ const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
     self.layer.borderColor = [color CGColor];
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >  __IPHONE_8_4
 - (CAShapeLayer *)makeDashBorder:(UIColor *)color pattern:(NSArray<NSNumber *> *)patterns{
+#else
+- (CAShapeLayer *)makeDashBorder:(UIColor *)color pattern:(NSArray *)patterns{
+#endif
     return makeDashBorder(self.bounds, color, patterns);
 }
 

@@ -37,7 +37,11 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 - (void) subHeight: (int) hei;
 - (void) border;
 - (void) border:(UIColor *)color;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >  __IPHONE_8_4
 - (CAShapeLayer *) makeDashBorder:(UIColor *)color pattern:(NSArray<NSNumber *>*) patterns;
+#else
+- (CAShapeLayer *) makeDashBorder:(UIColor *)color pattern:(NSArray*) patterns;
+#endif
 - (void) removeAllSubViews;
 - (void) addWidth:(int) width;
 - (void) round;

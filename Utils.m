@@ -120,7 +120,11 @@ CAShapeLayer* makePolygon(CGPoint *points,UInt8 count){
     border.path = path.CGPath;
     return border;
 }
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >  __IPHONE_8_4
 CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* patterns){
+#else
+CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray* patterns){
+#endif
     CAShapeLayer *border = [CAShapeLayer layer];
     border.strokeColor = color.CGColor;
     border.lineDashPattern = patterns;
@@ -129,7 +133,11 @@ CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray<NSNumber *>* 
     return border;
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >  __IPHONE_8_4
 CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray<NSNumber *>* patterns){
+#else
+CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray* patterns){
+#endif
     assert(patterns.count > 0);
     CAShapeLayer *border = [CAShapeLayer layer];
     border.lineDashPattern = patterns;

@@ -390,6 +390,21 @@ const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
     NSParameterAssert(self.count >= arr.count);
     return NSMakeRange([self indexOfObject:arr.firstObject], arr.count);
 }
+    
+-(NSArray *)arrayByCount:(UInt8)c{
+    NSMutableArray *result = [NSMutableArray array];
+    if (self.count > 0) {
+        UInt8 line = (self.count -1)/c + 1;
+        for (UInt8 i = 0; i < line; i++) {
+            if (self.count < i*c+c) {
+                [result addObject:[self subarrayWithRange:NSMakeRange(i*c, self.count-i*c)]];
+            }else{
+                [result addObject:[self subarrayWithRange:NSMakeRange(i*c, c)]];
+            }
+        }
+    }
+    return result;
+}
 @end
 
 @implementation UITableViewCell (Helper)

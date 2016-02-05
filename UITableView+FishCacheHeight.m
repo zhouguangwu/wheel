@@ -7,6 +7,7 @@
 //
 
 #import "UITableView+FishCacheHeight.h"
+#import <objc/runtime.h>
 const void *CacheHeightKey = &CacheHeightKey;
 @implementation UITableView (FishCacheHeight)
 -(void)go_fish_CacheHeight{

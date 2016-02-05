@@ -7,6 +7,7 @@
 //
 
 #import "Utils.h"
+#import "Category.h"
 BOOL validateEmpty(NSArray *fields,NSArray *infos){
     assert(fields.count == infos.count && fields.count > 0);
     for (UITextField *field in fields) {
@@ -96,6 +97,7 @@ UINavigationController * rootNav(){
 }
 
 #include <execinfo.h>
+#import "Category.h"
 void exceptionHandler(NSException *exception){
     NSString * const exceptionKey = @"exception";
     NSMutableString *finalStr = [NSMutableString stringWithFormat:@"%@,%@,%@",exception,exception.callStackSymbols,exception.callStackReturnAddresses];

@@ -12,31 +12,7 @@
 #import <objc/runtime.h>
 @implementation KeyValue
 @end
-#ifdef MB_INSTANCETYPE
-const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
-@implementation MBProgressHUD (Helper)
--(void)setOperation:(AFHTTPRequestOperation *)operation{
-    objc_setAssociatedObject(self, MBProgressHUDOperationKey, operation, OBJC_ASSOCIATION_RETAIN);
-}
--(AFHTTPRequestOperation *)operation{
-    return objc_getAssociatedObject(self, MBProgressHUDOperationKey);
-}
-@end
-#endif
 @implementation UIView (Helper)
-#ifdef MB_INSTANCETYPE
-- (void) toast:(NSString *)str time:(NSTimeInterval)t{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-    
-    // Configure for text only and offset down
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = str;
-    hud.margin = 10.f;
-    hud.removeFromSuperViewOnHide = YES;
-    
-    [hud hide:YES afterDelay:t];
-}
-#endif
 
 - (UIImage *) renderImage{
     UIGraphicsBeginImageContext(self.frame.size);

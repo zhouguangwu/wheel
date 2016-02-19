@@ -70,7 +70,6 @@ h.removeFromSuperViewOnHide = YES;
 #define kHubTag 999
 #define showHub() MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:kWindow animated:YES];hub.tag=kHubTag;
 #define hideHub() [MBProgressHUD hideHUDForView:kWindow animated:YES]
-#define kToastTime 1
 #define FontAttribute(s) NSFontAttributeName:[UIFont systemFontOfSize:s]
 #define ColorAttributeWhite ColorAttribute([UIColor whiteColor])
 #define ColorAttribute(c) NSForegroundColorAttributeName:c
@@ -108,10 +107,6 @@ CAShapeLayer * makeDashBorder(CGRect frame,UIColor * color,NSArray* patterns);
 CAShapeLayer *makeDashLine(CGPoint *points,UInt8 length,NSArray* patterns);
 #endif
 CAShapeLayer *makeLine(CGPoint *points,UInt8 length);
-#ifdef MB_INSTANCETYPE
-void toast(NSString *str);
-void toastWithTime(NSString *str,NSTimeInterval t);
-#endif
 typedef enum{
     MakePointsDirectionTop,
     MakePointsDirectionLeft,

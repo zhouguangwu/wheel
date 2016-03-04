@@ -9,6 +9,14 @@
 #import "MBProgressHUD.h"
 #import <objc/runtime.h>
 #import "AFHTTPRequestOperation.h"
+#define showhub(h,title) MBProgressHUD *h = [[MBProgressHUD alloc] initWithView:kWindow];\
+h.labelText = title; \
+[kWindow addSubview:h]; \
+[h show:YES];\
+h.removeFromSuperViewOnHide = YES;
+#define kHubTag 999
+#define showHub() MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:kWindow animated:YES];hub.tag=kHubTag;
+#define hideHub() [MBProgressHUD hideHUDForView:kWindow animated:YES]
 void toast(NSString *str);
 void toastWithTime(NSString *str,NSTimeInterval t);
 @interface MBProgressHUD (wheel)

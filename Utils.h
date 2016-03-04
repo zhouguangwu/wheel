@@ -62,14 +62,6 @@ shared##classname = [[self alloc] init]; \
 } \
 return shared##classname; \
 }
-#define showhub(h,title) MBProgressHUD *h = [[MBProgressHUD alloc] initWithView:kWindow];\
-h.labelText = title; \
-[kWindow addSubview:h]; \
-[h show:YES];\
-h.removeFromSuperViewOnHide = YES;
-#define kHubTag 999
-#define showHub() MBProgressHUD *hub = [MBProgressHUD showHUDAddedTo:kWindow animated:YES];hub.tag=kHubTag;
-#define hideHub() [MBProgressHUD hideHUDForView:kWindow animated:YES]
 #define FontAttribute(s) NSFontAttributeName:[UIFont systemFontOfSize:s]
 #define ColorAttributeWhite ColorAttribute([UIColor whiteColor])
 #define ColorAttribute(c) NSForegroundColorAttributeName:c

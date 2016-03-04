@@ -8,7 +8,7 @@
 
 #import "ActiveRecordBase.h"
 #import <sqlite3.h>
-#import "Utils.h"
+#import "wheel.h"
 #import <objc/NSObject.h>
 #import <objc/runtime.h>
 FMDatabase *_db;

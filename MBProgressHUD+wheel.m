@@ -7,7 +7,7 @@
 //
 
 #import "MBProgressHUD+wheel.h"
-#import "Utils.h"
+#import "wheel.h"
 #define kToastTime 1
 void toast(NSString *str){
     toastWithTime(str, kToastTime+0.1);

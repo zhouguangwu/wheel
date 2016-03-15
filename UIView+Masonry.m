@@ -14,15 +14,21 @@
     [self mas_makeConstraints:^(MASConstraintMaker *maker){
         maker.left.equalTo(left.mas_right).offset(offset);
         maker.top.equalTo(left.mas_top);
-        maker.width.equalTo(width);
-        maker.height.equalTo(height);
+        if (width) {
+            maker.width.equalTo(width);
+        }
+        if (height) {
+            maker.height.equalTo(height);
+        }
     }];
 }
 -(void)mas_css:(UIView *)css width:(id)width height:(id)height offset:(CGFloat)offset{
     [self mas_makeConstraints:^(MASConstraintMaker *maker){
         maker.left.equalTo(css.mas_left);
         maker.top.equalTo(css.mas_bottom).offset(offset);
-        maker.width.equalTo(width);
+        if (width) {
+            maker.width.equalTo(width);
+        }
         if (height) {
             maker.height.equalTo(height);
         }
@@ -60,4 +66,12 @@
     [self leftTop];
     self.bottom.equalTo(@0);
 }
+@end
+@implementation UITableView (mas)
+
+-(void)mas_go{
+    self.rowHeight = UITableViewAutomaticDimension;
+    self.estimatedRowHeight = 44;
+}
+
 @end

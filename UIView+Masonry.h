@@ -19,3 +19,6 @@
 -(void)leftTopRight;
 -(void)leftTopBottom;
 @end
+@interface UITableView (mas)
+-(void)mas_go;
+@end

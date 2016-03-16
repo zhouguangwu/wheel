@@ -8,7 +8,6 @@
 
 #import "MBProgressHUD.h"
 #import <objc/runtime.h>
-#import "AFHTTPRequestOperation.h"
 #define showhub(h,title) MBProgressHUD *h = [[MBProgressHUD alloc] initWithView:kWindow];\
 h.labelText = title; \
 [kWindow addSubview:h]; \
@@ -20,7 +19,11 @@ h.removeFromSuperViewOnHide = YES;
 void toast(NSString *str);
 void toastWithTime(NSString *str,NSTimeInterval t);
 @interface MBProgressHUD (wheel)
+#if AFNetworkingVersion == 3
+@property NSURLSessionDownloadTask *operation;
+#else
 @property AFHTTPRequestOperation *operation;
+#endif
 @end
 @interface UIView (hub)
 - (void) toast:(NSString *)str time:(NSTimeInterval)t;

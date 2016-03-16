@@ -26,10 +26,18 @@ void toastWithTime(NSString *str,NSTimeInterval t){
 }
 const void *MBProgressHUDOperationKey = &MBProgressHUDOperationKey;
 @implementation MBProgressHUD (wheel)
+#if AFNetworkingVersion == 3
+-(void)setOperation:(NSURLSessionDownloadTask *)operation{
+#else
 -(void)setOperation:(AFHTTPRequestOperation *)operation{
+#endif
     objc_setAssociatedObject(self, MBProgressHUDOperationKey, operation, OBJC_ASSOCIATION_RETAIN);
 }
+#if AFNetworkingVersion == 3
+-(NSURLSessionDownloadTask *)operation{
+#else
 -(AFHTTPRequestOperation *)operation{
+#endif
     return objc_getAssociatedObject(self, MBProgressHUDOperationKey);
 }
 @end

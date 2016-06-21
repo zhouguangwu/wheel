@@ -346,6 +346,25 @@ void redirectLogToFile(){
     [self presentViewController:c animated:YES completion:nil];
     return c;
 }
+    
+-(UIAlertController *)promtWithTitle:(NSString *)title ok:(void (^)(UITextField *))block{
+    UIAlertController *c = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *a1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *a){
+    }];
+    __block UITextField *field;
+    [c addTextFieldWithConfigurationHandler:^(UITextField *f){
+        field = f;
+    }];
+    UIAlertAction *a2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){
+        block(field);
+    }];
+    [c addAction:a1];
+    [c addAction:a2];
+    [self presentViewController:c animated:YES completion:^{
+        [field becomeFirstResponder];
+    }];
+    return c;
+}
 
 - (void) debug{
     UIImageView *debugView = [[UIImageView alloc] initWithFrame:self.view.bounds];

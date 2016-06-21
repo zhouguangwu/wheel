@@ -260,6 +260,7 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
 + (UIBarButtonItem *) imageItemWithName:(NSString *)name target:(id)target action:(SEL)action;
 + (UIBarButtonItem *) imageItemWithName:(NSString *)name frame:(CGRect)frame target:(id)target action:(SEL)action;
 + (UIBarButtonItem *) itemWithTitle: (NSString *)title target:(id) target action:(SEL) action;
++ (UIBarButtonItem *) itemWithTitle: (NSString *)title frame:(CGRect)frame target:(id) target action:(SEL) action;
 @end
 
 @interface UINavigationController (Factory)

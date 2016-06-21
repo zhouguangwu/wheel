@@ -815,7 +815,11 @@ CGRect scaleRectMake(float scaleX, float scaleY, float scaleWidth, float scaleHe
 }
 
 + (UIBarButtonItem *)itemWithTitle:(NSString *)title target:(id)target action:(SEL)action{
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
+    return [self itemWithTitle:title frame:CGRectMake(0, 0, 40, 30) target:target action:action];
+}
+    
++(UIBarButtonItem *)itemWithTitle:(NSString *)title frame:(CGRect)frame target:(id)target action:(SEL)action{
+    UIButton *button = [[UIButton alloc] initWithFrame:frame];
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];

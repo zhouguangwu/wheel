@@ -145,6 +145,7 @@ UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:sel
 -(void)quickAlert:(NSString *)message;
 -(UIAlertController *)confirmWithTitle:(NSString *) title message:(NSString *) message ok:(void (^)(UIAlertController *))block;
 - (UIAlertController *)promtWithTitle:(NSString *)title ok:(void (^)(UITextField *))block;
+- (UIAlertController *)showActionSheetWithTitles:(NSArray<NSString *> *)titles suc:(void(^)(UInt8))block;
 - (void) debug;
 - (void) cusBackItemWithTitle:(NSString *)title;
 - (void) cusLeftItemWithTitle:(NSString *)title;

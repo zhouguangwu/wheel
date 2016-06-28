@@ -365,6 +365,21 @@ void redirectLogToFile(){
     }];
     return c;
 }
+    
+    -(UIAlertController *)showActionSheetWithTitles:(NSArray<NSString *> *)titles suc:(void (^)(UInt8))block{
+        UIAlertController *c = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        for(UInt8 i =0;i < titles.count ;i++){
+            UIAlertAction *a1 = [UIAlertAction actionWithTitle:titles[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction *a){
+                block(i);
+            }];
+            [c addAction:a1];
+        }
+        [c addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *a){
+            [c dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [self presentViewController:c animated:YES completion:^{}];
+        return c;
+    }
 
 - (void) debug{
     UIImageView *debugView = [[UIImageView alloc] initWithFrame:self.view.bounds];
